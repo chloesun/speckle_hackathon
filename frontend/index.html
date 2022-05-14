@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Speckle Gamification</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        font-family: Monospace;
+        background-color: #000;
+        color: #fff;
+        margin: 0px;
+        overflow: hidden;
+      }
+      #chat {
+        position: absolute;
+        width: 100%;
+        height: 40px;
+        bottom: -40px;
+        transition: all 0.5s;
+      }
+      form {
+        background: #000;
+        padding: 3px;
+        width: 100%;
+      }
+      form input {
+        border: 0;
+        padding: 10px;
+        width: 88%;
+        margin-right: 0.5%;
+      }
+      form button {
+        width: 8%;
+        background: rgb(130, 224, 255);
+        border: none;
+        padding: 10px;
+      }
+
+      /* #animation_button {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      } */
+      #chat_button {
+        position: absolute;
+        padding: 10px;
+        right: 20px;
+        top: 20px;
+      }
+
+      #hotkey {
+        position: absolute;
+        right: 20px;
+        top: 70px;
+      }
+
+      #loading-screen {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        opacity: 1;
+        transition: 1s opacity;
+      }
+
+      #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #9370db;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #ba55d3;
+        -webkit-animation: spin 3s linear infinite;
+        animation: spin 3s linear infinite;
+      }
+      #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #ff00ff;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      #nameTags {
+        position: absolute; /* let us position ourself inside the container */
+        left: 100; /* make our position the top left of the container */
+        top: 100;
+        color: white;
+      }
+      #nameTags > div {
+        position: absolute; /* let us position them inside the container */
+        left: 0; /* make their default position the top left of the container */
+        top: 0;
+        font-size: large;
+        user-select: none; /* don't let the text get selected */
+        text-shadow:         /* create a black outline */ -1px -1px 0 #000,
+          0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000,
+          0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="loading-screen">
+      <div id="loader"></div>
+    </div>
+    <div id="nameTags"></div>
+    <div id="chat">
+      <form id="msg-form">
+        <input id="message" type="text" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <script
+      scr="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="inflate.min.js"></script>
+    <script src="FBXLoader.js"></script>
+    <script src="new/OrbitControls.js"></script>
+    <script src="WebGL.js"></script>
+    <script src="toon3d.js"></script>
+    <script type="module" src="SpeckleLoader.js"></script>
+    <script type="module" src="speckle_game.js"></script>
+    <script type="module">
+      import Game from "./speckle_game.js";
+      document.addEventListener("DOMContentLoaded", function () {
+        const game = new Game();
+        window.game = game; //For debugging only
+      });
+
+      // press F2 to toggle chatmode
+      document.body.onkeyup = function (e) {
+        if (e.keyCode == 113) {
+          game.toggleChatMode();
+        }
+      };
+    </script>
+    <!-- <button
+      id="animation_button"
+      onClick="javascript:game.toggleShaderAnimation()"
+    >
+      Toggle Animation
+    </button> -->
+    <button id="chat_button" onClick="javascript:game.toggleChatMode()">
+      Toggle Chat
+    </button>
+    <h id="hotkey">Press F2 to Toggle Chat</h>
+  </body>
+</html>
