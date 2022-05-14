@@ -24,7 +24,8 @@ A 3D multi-player web based game using Speckle Stream, THREE.js and Socket.IO
 
 ## Game Content Design
 
-Generated with Grasshopper Plugin [Wave Function Collapse](https://www.food4rhino.com/en/app/monoceros) to explore procedural content generation
+- Generated with Grasshopper Plugin [Wave Function Collapse](https://www.food4rhino.com/en/app/monoceros) to explore procedural content generation
+- [Speckle Stream](https://speckle.xyz/streams/c9cc39ee29/commits/2c8301dd40)
 
 ## Tech Stack
 
