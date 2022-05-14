@@ -7,6 +7,7 @@ A 3D multi-player web based game using Speckle Stream, THREE.js and Socket.IO
 - Load Speckle Stream in THREEjs application for custom web-based game
 - Easily Exchange Contents with urls from Speckle server
 - Socket.io to handle chat function
+- Use joystick to move players around
 - Turn on and off chat mode with button, or press hotkey F2
 - Works on mobile
 
