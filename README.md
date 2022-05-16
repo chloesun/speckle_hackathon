@@ -2,7 +2,7 @@
 
 ## [Demo Site](https://speckle-gamify-hackathon.herokuapp.com/)
 
-A 3D multi-player web based game using Speckle Stream, THREE.js and Socket.IO
+A 3D multi-player web based game using Speckle Stream, THREE.js nodejs and Socket.IO
 
 - Load Speckle Stream in THREEjs application for custom web-based game
 - Easily Exchange Contents with urls from Speckle server
