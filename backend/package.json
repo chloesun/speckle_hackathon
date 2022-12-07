@@ -1,5 +1,5 @@
 {
-  "name": "Speckle Gamification",
+  "name": "speckle_gamification",
   "version": "0.0.1",
   "description": "multi-player socket.io app",
   "dependencies": {
