@@ -1,6 +1,6 @@
 # Speckle Hackathon - Gamify Design
 
-## [Demo Site](https://speckle-gamify-hackathon.herokuapp.com/)
+## [Demo Site](https://speckle-metaverse.onrender.com/)
 
 A 3D multi-player web based game using Speckle Stream, THREE.js nodejs and Socket.IO
 
